@@ -7,6 +7,8 @@ import { ParticipantesComponent } from './components/participantes/participantes
 import { HomeComponent } from './components/home/home.component';
 import { EditaParticipanteComponent } from './components/edita-participante/edita-participante.component';
 import { EditaTurmaComponent } from './components/edita-turma/edita-turma.component';
+import { HomeLogoComponent } from './shared/components/home-logo/home-logo.component';
+import { CheckHoveringDirective } from './shared/directives/check-hovering.directive';
 
 @NgModule({
   declarations: [
@@ -14,7 +16,9 @@ import { EditaTurmaComponent } from './components/edita-turma/edita-turma.compon
     ParticipantesComponent,
     HomeComponent,
     EditaParticipanteComponent,
-    EditaTurmaComponent
+    EditaTurmaComponent,
+    HomeLogoComponent,
+    CheckHoveringDirective
   ],
   imports: [
     BrowserModule,
