@@ -18,14 +18,23 @@
           <td>{{participante.nome}}</td>
           <td class="d-none d-md-table-cell">{{participante.email}}</td>
           <td class="d-none d-lg-table-cell">{{participante.observacoes}}</td>
-          <td class="d-none d-sm-table-cell">{{participante.turma}}</td>
+          <td class="d-none d-sm-table-cell">
+            <ng-container *ngIf="participante.turma">
+              {{participante.turma['descricao']}}
+            </ng-container>
+          </td>
           <td class="btns-cell d-flex justify-content-end">
             <button
             class="btn btn-outline-info"
             [routerLink]="['/participante', participante.id, 'editar']">
               Editar
             </button>
-            <button class="btn btn-outline-danger">Deletar</button>
+            <button
+            class="btn btn-outline-danger"
+            (click)="onDelete(participante.id)"
+            >
+              Deletar
+            </button>
           </td>
         </tr>
       </tbody>

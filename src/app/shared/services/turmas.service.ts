@@ -31,7 +31,7 @@ export class TurmasService {
   }
 
   newTurma(turma: {descricao: String, tipo: String}): void {
-    this.http.post<Turma[]>(`${environment.api_uri}/turma`, { ...turma, participantes: [] })
+    this.http.post<Turma>(`${environment.api_uri}/turma`, { ...turma, participantes: [] })
       .subscribe(() => this.getAll().subscribe());
   }
 }
