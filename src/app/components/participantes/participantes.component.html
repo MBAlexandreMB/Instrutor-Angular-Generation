@@ -19,7 +19,11 @@
         <td class="d-none d-lg-table-cell">{{participante.observacoes}}</td>
         <td class="d-none d-sm-table-cell">{{participante.turma}}</td>
         <td class="btns-cell d-flex justify-content-end">
-          <button class="btn btn-outline-info">Editar</button>
+          <button
+          class="btn btn-outline-info"
+          [routerLink]="['/participante', participante.id, 'editar']">
+            Editar
+          </button>
           <button class="btn btn-outline-danger">Deletar</button>
         </td>
       </tr>
