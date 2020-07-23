@@ -22,4 +22,9 @@ export class ParticipantesComponent implements OnInit {
     this.participantesService.getAll()
       .subscribe();
   }
+
+  onDelete(id: number) {
+    console.log('eu deletaria o participante', id);
+    this.participantesService.delete(id);
+  }
 }

@@ -76,7 +76,13 @@ export class EditaParticipanteComponent implements OnInit {
   onSubmit() {
     this.form.markAllAsTouched();
     if (this.form.valid) {
-      this.participantesService.newParticipante(this.form.value);
+      const novoParticipante = {
+        ...this.form.value,
+        turma: this.turmas.find(turma => turma.id == this.form.value['turma'])
+      }
+
+      console.log(novoParticipante);
+      this.participantesService.newParticipante(novoParticipante);
       this.router.navigate(['/participantes']);
     } else {
       this.errorMessage = "Verifique os campos com erro antes de enviar!"
