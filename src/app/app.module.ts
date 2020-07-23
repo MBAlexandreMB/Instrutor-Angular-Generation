@@ -1,7 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { ParticipantesComponent } from './components/participantes/participantes.component';
@@ -23,6 +25,8 @@ import { CheckHoveringDirective } from './shared/directives/check-hovering.direc
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    NgbToastModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
