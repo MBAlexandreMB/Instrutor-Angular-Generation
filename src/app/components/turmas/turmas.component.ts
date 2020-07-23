@@ -9,6 +9,7 @@ import { Turma } from 'src/app/shared/models/turma.model';
 })
 export class TurmasComponent implements OnInit {
   turmas: Turma[] = [];
+  algumParticipante: boolean = false;
 
   constructor(private turmaService: TurmasService) { }
 
@@ -16,9 +17,14 @@ export class TurmasComponent implements OnInit {
     this.turmaService.turmas
       .subscribe(result => {
         this.turmas = result;
+        this.checkForParticipants();
       });
 
     this.turmaService.getAll()
       .subscribe();
+  }
+
+  private checkForParticipants() {
+    this.algumParticipante = this.turmas.some(turma => turma.participantes.length > 0);
   }
 }
