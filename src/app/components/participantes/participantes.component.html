@@ -1,3 +1,28 @@
-<div class="container">
-  <p>participantes works!</p>
+<div class="container d-flex flex-column align-items-center">
+  <h2 class="my-5">Lista de Participantes</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nome</th>
+        <th scope="col" class="d-none d-md-table-cell">E-mail</th>
+        <th scope="col" class="d-none d-lg-table-cell">Observações</th>
+        <th scope="col" class="d-none d-sm-table-cell">Turma</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let participante of participantes">
+        <th scope="row">{{participante.id}}</th>
+        <td>{{participante.nome}}</td>
+        <td class="d-none d-md-table-cell">{{participante.email}}</td>
+        <td class="d-none d-lg-table-cell">{{participante.observacoes}}</td>
+        <td class="d-none d-sm-table-cell">{{participante.turma}}</td>
+        <td class="btns-cell d-flex justify-content-end">
+          <button class="btn btn-outline-info">Editar</button>
+          <button class="btn btn-outline-danger">Deletar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
