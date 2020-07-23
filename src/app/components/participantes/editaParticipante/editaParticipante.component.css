@@ -3,3 +3,7 @@ ngb-toast {
   top: 20px;
   right: 20px;
 }
+
+textarea {
+  resize: none;
+}

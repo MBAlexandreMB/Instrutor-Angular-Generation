@@ -8,7 +8,7 @@ import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import { ParticipantesComponent } from './components/participantes/participantes.component';
 import { HomeComponent } from './components/home/home.component';
-import { EditaParticipanteComponent } from './components/editaParticipante/editaParticipante.component';
+import { EditaParticipanteComponent } from './components/participantes/editaParticipante/editaParticipante.component';
 import { EditaTurmaComponent } from './components/turmas/editaTurma/editaTurma.component';
 import { CheckHoveringDirective } from './shared/directives/check-hovering.directive';
 import { TurmasComponent } from './components/turmas/turmas.component';
