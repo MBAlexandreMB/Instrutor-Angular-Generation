@@ -5,9 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ParticipantesComponent } from './components/participantes/participantes.component';
 import { HomeComponent } from './components/home/home.component';
-import { EditaParticipanteComponent } from './components/edita-participante/edita-participante.component';
-import { EditaTurmaComponent } from './components/edita-turma/edita-turma.component';
-import { HomeLogoComponent } from './shared/components/home-logo/home-logo.component';
+import { EditaParticipanteComponent } from './components/editaParticipante/editaParticipante.component';
+import { EditaTurmaComponent } from './components/editaTurma/editaTurma.component';
 import { CheckHoveringDirective } from './shared/directives/check-hovering.directive';
 
 @NgModule({
@@ -17,7 +16,6 @@ import { CheckHoveringDirective } from './shared/directives/check-hovering.direc
     HomeComponent,
     EditaParticipanteComponent,
     EditaTurmaComponent,
-    HomeLogoComponent,
     CheckHoveringDirective
   ],
   imports: [
