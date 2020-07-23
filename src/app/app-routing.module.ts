@@ -3,8 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './components/home/home.component';
 import { ParticipantesComponent } from './components/participantes/participantes.component';
-import { EditaParticipanteComponent } from './components/edita-participante/edita-participante.component';
-import { EditaTurmaComponent } from './components/edita-turma/edita-turma.component';
+import { EditaParticipanteComponent } from './components/editaParticipante/editaParticipante.component';
+import { EditaTurmaComponent } from './components/editaTurma/editaTurma.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },

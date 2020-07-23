@@ -1,34 +1,40 @@
-<ul class="nav">
-  <li class="nav-item">
-    <a
-    class="nav-link d-flex align-items-center"
-    id="home-link"
-    routerLink="/home"
-    >
-      Home
-    </a>
-  </li>
-  <li class="nav-item d-flex align-items-center">
-    <a class="nav-link active" routerLink="/participantes">Lista de Participantes</a>
-  </li>
-  <li class="nav-item dropdown d-flex align-items-center">
-    <a class="nav-link dropdown-toggle"
-    data-toggle="dropdown"
-    href="#"
-    role="button"
-    aria-haspopup="true"
-    aria-expanded="false"
-    >
-      Cadastro
-    </a>
-    <div class="dropdown-menu">
-      <a class="dropdown-item" routerLink="/participante/novo/cadastrar">Participante</a>
-      <a class="dropdown-item" routerLink="/turma/nova/cadastrar">Turma</a>
-    </div>
-  </li>
-</ul>
+<nav class="navbar navbar-expand-sm navbar-light bg-light">
+  <a
+  class="nav-link d-flex align-items-center"
+  id="home-link"
+  routerLink="/home"
+  >
+    Home
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse ml-4 ml-sm-0" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link active" routerLink="/participantes">Lista de Participantes</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle"
+        data-toggle="dropdown"
+        href="#"
+        role="button"
+        aria-haspopup="true"
+        aria-expanded="false"
+        >
+          Cadastro
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" routerLink="/participante/novo/cadastrar">Participante</a>
+          <a class="dropdown-item" routerLink="/turma/nova/cadastrar">Turma</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
 <router-outlet></router-outlet>
-<footer class="footer fixed-bottom text-white">
+<footer class="footer text-white">
   <div
   class="py-4 d-flex align-items-center justify-content-center"
   id="footer-social-container"
