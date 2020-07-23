@@ -10,13 +10,16 @@ import { ParticipantesService } from 'src/app/shared/services/participantes.serv
 export class ParticipantesComponent implements OnInit {
   participantes: Participante[] = [];
 
-  constructor(private participanteService: ParticipantesService) {
+  constructor(private participantesService: ParticipantesService) {
    }
 
   ngOnInit() {
-    this.participanteService.getAll()
+    this.participantesService.participantes
       .subscribe(result => {
         this.participantes = result;
       });
+
+    this.participantesService.getAll()
+      .subscribe();
   }
 }

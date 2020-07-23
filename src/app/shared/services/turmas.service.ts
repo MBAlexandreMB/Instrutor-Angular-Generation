@@ -17,7 +17,9 @@ export class TurmasService {
 
   getAll(): Observable<Turma[]> {
     return this.http.get<Turma[]>(`${environment.api_uri}/turmas`)
-      .pipe(tap((result) => this.turmas.next(result)));
+      .pipe(
+        tap((result) => this.turmas.next(result))
+      );
   }
   
   getOne(id): Observable<Turma> {
@@ -27,9 +29,10 @@ export class TurmasService {
     );
   }
 
-  newTurma(turma: {descricao: String, tipo: String}) {
+  newTurma(turma: {descricao: String, tipo: String}): void {
     this.http.post<Turma[]>(`${environment.api_uri}/turmas`, turma)
-      .pipe(tap((result) => this.turmas.next(result)))
-      .subscribe();
+      .pipe(
+        tap((result) => this.turmas.next(result))
+      ).subscribe();
   }
 }
