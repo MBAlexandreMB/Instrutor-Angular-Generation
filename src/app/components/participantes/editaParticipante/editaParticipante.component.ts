@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Turma } from 'src/app/shared/models/turma.model';
 import { TurmasService } from 'src/app/shared/services/turmas.service';
 import { ParticipantesService } from 'src/app/shared/services/participantes.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-edita-participante',
@@ -16,7 +17,8 @@ export class EditaParticipanteComponent implements OnInit {
 
   constructor(
     private turmasService: TurmasService,
-    private participantesService: ParticipantesService
+    private participantesService: ParticipantesService,
+    private router: Router,
   ) {
     this.form = new FormGroup({
       'nome': new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -36,7 +38,8 @@ export class EditaParticipanteComponent implements OnInit {
   onSubmit() {
     this.form.markAllAsTouched();
     if (this.form.valid) {
-      
+      this.participantesService.newParticipante(this.form.value);
+      this.router.navigate(['/participantes']);
     } else {
       this.errorMessage = "Verifique os campos com erro antes de enviar!"
     }
