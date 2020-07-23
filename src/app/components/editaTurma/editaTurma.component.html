@@ -1,3 +1,65 @@
-<div class="container">
-  <p>edita-turma works!</p>
+<div class="container d-flex flex-column align-items-center">
+  <h3 class="my-4">Cadastro de Turmas</h3>
+  <form
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()"
+  class="w-75 d-flex flex-column align-items-center"
+  >
+    <div class="form-group w-100">
+      <label for="descricao">Descrição</label>
+      <input
+      (input)="checkIfValid()"
+      type="email"
+      class="form-control"
+      id="descricao"
+      placeholder="Descrição"
+      formControlName="descricao"
+      >
+      <div *ngIf="descricao.touched && descricao.invalid">
+        <small *ngIf="descricao.errors.required" class="text-danger ml-2 mt-2">
+          Campo obrigatório
+        </small>
+        <small *ngIf="descricao.errors.minlength" class="text-danger ml-2 mt-2">
+          O campo deve ter ao menos 3 caracteres
+        </small>
+      </div>
+    </div>
+    <div class="form-group w-100">
+      <label for="tipo">Tipo</label>
+      <input
+      (input)="checkIfValid()"
+      type="text"
+      class="form-control"
+      id="tipo"
+      placeholder="Tipo"
+      formControlName="tipo"
+      >
+      <div *ngIf="tipo.touched && tipo.invalid">
+        <small *ngIf="tipo.errors.required" class="text-danger ml-2 mt-2">
+          Campo obrigatório
+        </small>
+        <small *ngIf="tipo.errors.minlength" class="text-danger ml-2 mt-2">
+          O campo deve ter ao menos 3 caracteres
+        </small>
+      </div>
+    </div>
+    <button
+    type="submit"
+    class="btn btn-outline-info w-50 my-3"
+    data-toggle="popover"
+    [disabled]="form.invalid"
+    >
+      Cadastrar
+    </button>
+    <ngb-toast
+    *ngIf="errorMessage"
+    header="Erro"
+    (hide)="closeToast()"
+    [delay]="7000"
+    [autohide]="true"
+    class="text-danger"
+    >
+      {{ errorMessage }}
+    </ngb-toast>
+  </form>
 </div>
