@@ -19,8 +19,7 @@ export class ParticipantesService {
   }
 
   getOne(id): Observable<Participante> {
-    return this.http.get<Participante[]>(`${environment.api_uri}/participantes`)
-      .pipe(
+    return this.getAll().pipe(
         map(result => result.find(el => el.id === id)),
         tap(result => this.participanteAtivo.next(result)),
       );
