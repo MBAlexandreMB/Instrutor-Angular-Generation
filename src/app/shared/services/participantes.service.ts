@@ -22,7 +22,7 @@ export class ParticipantesService {
       );
   }
 
-  getOne(id): Observable<Participante> {
+  getOne(id: number): Observable<Participante> {
     return this.getAll().pipe(
         map(result => result.find(el => el.id === id)),
         tap(result => this.participanteAtivo.next(result)),
