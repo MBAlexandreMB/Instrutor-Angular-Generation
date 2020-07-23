@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
 import { ParticipantesComponent } from './components/participantes/participantes.component';
 import { HomeComponent } from './components/home/home.component';
@@ -16,11 +17,12 @@ import { CheckHoveringDirective } from './shared/directives/check-hovering.direc
     HomeComponent,
     EditaParticipanteComponent,
     EditaTurmaComponent,
-    CheckHoveringDirective
+    CheckHoveringDirective,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
