@@ -13,10 +13,12 @@ export class TurmasComponent implements OnInit {
   constructor(private turmaService: TurmasService) { }
 
   ngOnInit() {
-    this.turmaService.getAll()
+    this.turmaService.turmas
       .subscribe(result => {
         this.turmas = result;
-      })
-  }
+      });
 
+    this.turmaService.getAll()
+      .subscribe();
+  }
 }
