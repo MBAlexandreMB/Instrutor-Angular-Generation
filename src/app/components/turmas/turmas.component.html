@@ -43,7 +43,9 @@
                   <td>{{participante.nome}}</td>
                   <td class="d-none d-md-table-cell">{{participante.email}}</td>
                   <td class="btns-cell d-flex justify-content-end">
-                    <a>Ver participante</a>
+                    <a [routerLink]="['/participante', participante.id, 'editar']">
+                      Ver participante
+                    </a>
                   </td>
                 </tr>
               </tbody>

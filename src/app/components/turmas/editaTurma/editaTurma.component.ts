@@ -30,6 +30,7 @@ export class EditaTurmaComponent implements OnInit {
   }
 
   onSubmit() {
+    this.form.markAllAsTouched();
     if (this.form.valid) {
       this.turmasService.newTurma(this.form.value);
     } else {
