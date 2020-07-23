@@ -33,6 +33,7 @@ export class EditaTurmaComponent implements OnInit {
     this.form.markAllAsTouched();
     if (this.form.valid) {
       this.turmasService.newTurma(this.form.value);
+      this.form.reset();
     } else {
       this.errorMessage = 'Verifique os erros do formulário antes de enviar!';
     }

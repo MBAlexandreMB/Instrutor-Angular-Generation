@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
 import { Participante } from '../models/participante.model';
@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class ParticipantesService {
-  participantes: Subject<Participante[]> = new Subject();
+  participantes: BehaviorSubject<Participante[]> = new BehaviorSubject([]);
   participanteAtivo: BehaviorSubject<Participante> = new BehaviorSubject(null);
 
   constructor(private http: HttpClient) { }
@@ -18,6 +18,7 @@ export class ParticipantesService {
   getAll(): Observable<Participante[]> {
     return this.http.get<Participante[]>(`${environment.api_uri}/participantes`)
       .pipe(
+        tap(r => console.log(r)),
         tap(result => this.participantes.next(result))
       );
   }
@@ -36,8 +37,8 @@ export class ParticipantesService {
     turma: String
   }): void {
     this.http.post<Participante[]>(`${environment.api_uri}/participantes`, participante)
-    .pipe(
-      tap(result => this.participantes.next(result))
-    ).subscribe();
+    .subscribe(() => {
+      this.getAll().subscribe();
+    });
   }
 }
