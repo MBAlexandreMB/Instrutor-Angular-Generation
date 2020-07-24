@@ -1,0 +1,17 @@
+#home-link {
+  color: black;
+  font-size: 1.3rem;
+  margin: 0;
+}
+
+.nav-link {
+  color: #aaa;
+}
+
+.nav-link:hover {
+  color: #555;
+}
+
+.active {
+  color: black;
+}
