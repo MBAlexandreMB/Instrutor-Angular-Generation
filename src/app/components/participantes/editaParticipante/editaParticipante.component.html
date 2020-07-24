@@ -85,7 +85,7 @@
     data-toggle="popover"
     [disabled]="form.invalid"
     >
-      Cadastrar
+      {{modo === 'cadastrar' ? 'Cadastrar' : 'Salvar'}}
     </button>
     <ngb-toast
     *ngIf="errorMessage"

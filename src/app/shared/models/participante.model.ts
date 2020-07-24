@@ -6,6 +6,6 @@ export class Participante {
     public nome: String,
     public email: String,
     public observacoes: String,
-    public turma: Turma | number,
+    public turma: Turma,
   ) {}
 }
