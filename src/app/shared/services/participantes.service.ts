@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { map, tap, filter } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 import { Participante } from '../models/participante.model';
 import { environment } from 'src/environments/environment';
-import { Turma } from '../models/turma.model';
 
 @Injectable({
   providedIn: 'root'
@@ -33,20 +32,12 @@ export class ParticipantesService {
       );
   }
 
-  newParticipante(participante: { 
-    nome: String,
-    email: String,
-    observacoes: String,
-    turma: Turma
-  }): void {
+  newParticipante(participante: Participante): void {
     const { nome, email, observacoes, turma } = participante;
     let info = {
       nome,
       email,
       observacoes,
-      turma: {
-        id: turma.id,
-      }
     };
 
     // O método POST não recebe o atributo turma, então fazemos 2 PUTs
@@ -55,17 +46,22 @@ export class ParticipantesService {
     // 2. Com base no id criado para o novo participante, faz a edição dos dados, incluindo a turma
     this.http.put<Participante>(`${environment.api_uri}/participantes`, info)
     .subscribe((novoParticipante) => {
-      const editInfo = {
-        ...novoParticipante,
-        turma: {
-          id: turma.id,
-        }
-      }
+      novoParticipante.turma = turma;
+      this.changeParticipante(novoParticipante)
+    });
+  }
 
-      this.http.put<Participante>(`${environment.api_uri}/participantes`, editInfo)
-      .subscribe(() => {
-        this.getAll().subscribe();
-      });
+  changeParticipante(participante) {
+    const editInfo = {
+      ...participante,
+      turma: {
+        id: participante.turma.id,
+      }
+    }
+
+    this.http.put<Participante>(`${environment.api_uri}/participantes`, editInfo)
+    .subscribe(() => {
+      this.getAll().subscribe();
     });
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Turma } from 'src/app/shared/models/turma.model';
 import { TurmasService } from 'src/app/shared/services/turmas.service';
@@ -16,6 +16,7 @@ export class EditaParticipanteComponent implements OnInit {
   turmas: Turma[] = [];
   errorMessage: String = null;
   participanteAtivo: Participante;
+  modo: String = 'cadastrar';
 
   constructor(
     private turmasService: TurmasService,
@@ -23,32 +24,38 @@ export class EditaParticipanteComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
   ) {
-    const { id, modo } = this.route.snapshot.params;
-    if (modo === 'editar' && id) {
-      this.participantesService.getOne(parseInt(id))
-      .subscribe(result => {
-          this.participanteAtivo = result;
-          this.setForm();
-        });
-    } else {
-      this.participanteAtivo = {
-        id: null,
-        nome: '',
-        email: '',
-        observacoes: '',
-        turma: null,
-      };
-      
-      this.setForm();
-    }
+    this.participanteAtivo = {
+      id: null,
+      nome: '',
+      email: '',
+      observacoes: '',
+      turma: null,
+    };
+    
+    this.setForm();
   }
 
   ngOnInit() {
-
     this.turmasService.getAll()
       .subscribe(result => {
         this.turmas = result;
       });
+    
+    // Verifica a mudança de rota e adapta o formulário às mudanças
+    this.route.params.subscribe(params => {
+      const { id, modo } = params;
+      this.modo = modo;
+
+      if (this.modo === 'editar' && id) {
+        this.participantesService.getOne(parseInt(id))
+        .subscribe(result => {
+            this.participanteAtivo = result;
+            this.setForm();
+          });
+      } else {
+        this.form.reset();
+      }
+    })
   }
 
   private setForm() {
@@ -66,23 +73,27 @@ export class EditaParticipanteComponent implements OnInit {
         [Validators.required, Validators.minLength(3)]
       ),
       'turma': new FormControl(
-        this.participanteAtivo.turma,
+        null,
         Validators.required
       ),
     });
-    console.log('setei form');
   }
 
   onSubmit() {
     this.form.markAllAsTouched();
     if (this.form.valid) {
-      const novoParticipante = {
+      const info = {
         ...this.form.value,
         turma: this.turmas.find(turma => turma.id == this.form.value['turma'])
       }
 
-      console.log(novoParticipante);
-      this.participantesService.newParticipante(novoParticipante);
+      if (this.route.snapshot.params.modo === 'cadastrar') {
+        console.log(info);
+        this.participantesService.newParticipante(info);
+      } else {
+        info.id = this.participanteAtivo.id;
+        this.participantesService.changeParticipante(info);
+      }
       this.router.navigate(['/participantes']);
     } else {
       this.errorMessage = "Verifique os campos com erro antes de enviar!"

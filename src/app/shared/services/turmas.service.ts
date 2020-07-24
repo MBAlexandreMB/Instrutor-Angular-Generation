@@ -18,7 +18,6 @@ export class TurmasService {
   getAll(): Observable<Turma[]> {
     return this.http.get<Turma[]>(`${environment.api_uri}/turma`)
       .pipe(
-        tap(r => console.log(r)),
         tap((result) => this.turmas.next(result))
       );
   }
