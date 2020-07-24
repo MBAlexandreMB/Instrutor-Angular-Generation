@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Turma } from 'src/app/shared/models/turma.model';
 import { TurmasService } from 'src/app/shared/services/turmas.service';
@@ -88,7 +88,6 @@ export class EditaParticipanteComponent implements OnInit {
       }
 
       if (this.route.snapshot.params.modo === 'cadastrar') {
-        console.log(info);
         this.participantesService.newParticipante(info);
       } else {
         info.id = this.participanteAtivo.id;
