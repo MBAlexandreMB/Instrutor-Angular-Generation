@@ -1,5 +1,5 @@
-import { Component, OnInit, ElementRef, ViewChild, HostListener, HostBinding, OnChanges, SimpleChanges } from '@angular/core';
-import { FormGroup, FormControl, Validators, NgControl } from '@angular/forms';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { TurmasService } from 'src/app/shared/services/turmas.service';
 
 @Component({
