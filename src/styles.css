@@ -1,1 +1,5 @@
-/* You can add global styles to this file, and also import other style files */
+.container {
+  min-height: calc(100vh - 235.17px);
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

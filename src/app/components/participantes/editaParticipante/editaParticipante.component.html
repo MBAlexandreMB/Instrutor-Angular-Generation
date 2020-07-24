@@ -1,0 +1,101 @@
+<div class="container d-flex flex-column align-items-center">
+  <h3 class="my-4">Cadastro de Participantes</h3>
+  <form
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()"
+  class="w-75 d-flex flex-column align-items-center"
+  >
+    <div class="form-group w-100">
+      <label for="descricao">Nome</label>
+      <input
+      (input)="checkIfValid()"
+      type="text"
+      class="form-control"
+      id="nome"
+      placeholder="Nome"
+      formControlName="nome"
+      >
+      <div *ngIf="nome.touched && nome.invalid">
+        <small *ngIf="nome.errors.required" class="text-danger ml-2 mt-2">
+          Campo obrigatório
+        </small>
+        <small *ngIf="nome.errors.minlength" class="text-danger ml-2 mt-2">
+          O campo deve ter ao menos 3 caracteres
+        </small>
+      </div>
+    </div>
+    <div class="form-group w-100">
+      <label for="tipo">E-mail</label>
+      <input
+      (input)="checkIfValid()"
+      type="email"
+      class="form-control"
+      id="email"
+      placeholder="E-mail"
+      formControlName="email"
+      >
+      <div *ngIf="email.touched && email.invalid">
+        <small *ngIf="email.errors.required" class="text-danger ml-2 mt-2">
+          Campo obrigatório
+        </small>
+        <small *ngIf="email.errors.email" class="text-danger ml-2 mt-2">
+          Digite um e-mail válido
+        </small>
+      </div>
+    </div>
+    <div class="form-group w-100">
+      <label for="tipo">Observações</label>
+      <textarea
+      (input)="checkIfValid()"
+      type="text"
+      class="form-control"
+      id="observacoes"
+      placeholder="Observações"
+      formControlName="observacoes"
+      ></textarea>
+      <div *ngIf="observacoes.touched && observacoes.invalid">
+        <small *ngIf="observacoes.errors.required" class="text-danger ml-2 mt-2">
+          Campo obrigatório
+        </small>
+        <small *ngIf="observacoes.errors.minlength" class="text-danger ml-2 mt-2">
+          O campo deve ter ao menos 3 caracteres
+        </small>
+      </div>
+    </div>
+    <div class="form-group w-100">
+      <label for="turma">Turma</label>
+      <select class="form-control" id="turma" formControlName="turma">
+        <option [value]="null" hidden selected>Selecione uma turma</option>
+        <option
+        [value]="turma.id"
+        *ngFor="let turma of turmas"
+        >
+          {{turma.descricao}}
+        </option>
+      </select>
+      <div *ngIf="turma.touched && turma.invalid">
+        <small *ngIf="turma.errors.required" class="text-danger ml-2 mt-2">
+          Campo obrigatório
+        </small>
+      </div>
+    </div>
+    <button
+    type="submit"
+    class="btn btn-outline-info w-50 my-3"
+    data-toggle="popover"
+    [disabled]="form.invalid"
+    >
+      {{modo === 'cadastrar' ? 'Cadastrar' : 'Salvar'}}
+    </button>
+    <ngb-toast
+    *ngIf="errorMessage"
+    header="Erro"
+    (hide)="closeToast()"
+    [delay]="7000"
+    [autohide]="true"
+    class="text-danger"
+    >
+      {{ errorMessage }}
+    </ngb-toast>
+  </form>
+</div>
