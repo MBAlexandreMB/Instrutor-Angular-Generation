@@ -16,6 +16,7 @@ import { CheckHoveringDirective } from './shared/directives/check-hovering.direc
 import { TurmasComponent } from './components/turmas/turmas.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MessageComponent } from './shared/components/message/message.component';
+import { ToastComponent } from './shared/components/toast/toast.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { MessageComponent } from './shared/components/message/message.component'
     EditaTurmaComponent,
     CheckHoveringDirective,
     TurmasComponent,
-    MessageComponent
+    MessageComponent,
+    ToastComponent,
   ],
   imports: [
     BrowserModule,

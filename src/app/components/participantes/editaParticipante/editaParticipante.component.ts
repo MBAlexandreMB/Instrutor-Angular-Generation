@@ -5,6 +5,7 @@ import { TurmasService } from 'src/app/shared/services/turmas.service';
 import { ParticipantesService } from 'src/app/shared/services/participantes.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Participante } from 'src/app/shared/models/participante.model';
+import { ToastService } from 'src/app/shared/services/toast.service';
 
 @Component({
   selector: 'app-edita-participante',
@@ -14,13 +15,13 @@ import { Participante } from 'src/app/shared/models/participante.model';
 export class EditaParticipanteComponent implements OnInit {
   form: FormGroup;
   turmas: Turma[] = [];
-  errorMessage: String = null;
   participanteAtivo: Participante;
   modo: String = 'cadastrar';
 
   constructor(
     private turmasService: TurmasService,
     private participantesService: ParticipantesService,
+    private toastService: ToastService,
     private router: Router,
     private route: ActivatedRoute,
   ) {
@@ -62,7 +63,7 @@ export class EditaParticipanteComponent implements OnInit {
     this.form = new FormGroup({
       'nome': new FormControl(
         this.participanteAtivo.nome,
-        [Validators.required, Validators.minLength(3)]
+        [Validators.required, Validators.minLength(5)]
       ),
       'email': new FormControl(
         this.participanteAtivo.email,
@@ -70,7 +71,7 @@ export class EditaParticipanteComponent implements OnInit {
       ),
       'observacoes': new FormControl(
         this.participanteAtivo.observacoes,
-        [Validators.required, Validators.minLength(3)]
+        [Validators.required, Validators.minLength(5)]
       ),
       'turma': new FormControl(
         null,
@@ -88,27 +89,21 @@ export class EditaParticipanteComponent implements OnInit {
       }
 
       if (this.route.snapshot.params.modo === 'cadastrar') {
-        this.participantesService.newParticipante(info);
+        this.participantesService.newParticipante(info);        
       } else {
         info.id = this.participanteAtivo.id;
         this.participantesService.changeParticipante(info);
       }
       this.router.navigate(['/participantes']);
     } else {
-      this.errorMessage = "Verifique os campos com erro antes de enviar!"
+      this.toastService.show(
+        'Erro',
+        "Verifique os campos com erro antes de enviar!",
+        'text-danger'
+      );
     }
   }
-
-  checkIfValid() {
-    if (this.form.valid) {
-      this.errorMessage = null;
-    }
-  }
-
-  closeToast() {
-    this.errorMessage = null;
-  }
-
+  
   get nome(): FormControl {
     return this.form.get('nome') as FormControl;
   }
