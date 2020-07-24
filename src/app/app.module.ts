@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { MatDialogModule } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -13,6 +14,8 @@ import { EditaParticipanteComponent } from './components/participantes/editaPart
 import { EditaTurmaComponent } from './components/turmas/editaTurma/editaTurma.component';
 import { CheckHoveringDirective } from './shared/directives/check-hovering.directive';
 import { TurmasComponent } from './components/turmas/turmas.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MessageComponent } from './shared/components/message/message.component';
 
 @NgModule({
   declarations: [
@@ -23,16 +26,20 @@ import { TurmasComponent } from './components/turmas/turmas.component';
     EditaTurmaComponent,
     CheckHoveringDirective,
     TurmasComponent,
+    MessageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouterModule,
+    MatDialogModule,
     HttpClientModule,
     ReactiveFormsModule,
     NgbToastModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [MessageComponent],
 })
 export class AppModule { }

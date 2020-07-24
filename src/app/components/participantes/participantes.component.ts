@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
+import { MessageComponent } from 'src/app/shared/components/message/message.component';
+
 import { Participante } from 'src/app/shared/models/participante.model';
 import { ParticipantesService } from 'src/app/shared/services/participantes.service';
 
@@ -10,7 +13,10 @@ import { ParticipantesService } from 'src/app/shared/services/participantes.serv
 export class ParticipantesComponent implements OnInit {
   participantes: Participante[] = [];
 
-  constructor(private participantesService: ParticipantesService) {
+  constructor(
+    private participantesService: ParticipantesService,
+    private dialog: MatDialog,
+    ) {
    }
 
   ngOnInit() {
@@ -24,7 +30,18 @@ export class ParticipantesComponent implements OnInit {
   }
 
   onDelete(id: number) {
-    console.log('eu deletaria o participante', id);
-    this.participantesService.delete(id);
+    const dialogRef = this.dialog.open(
+      MessageComponent, {
+      data: {
+        text: 'Deseja realmente apagar esse participante?',
+        options: 'yn'
+      }
+    });
+    
+    dialogRef.afterClosed().subscribe(resposta => {
+      if (resposta) {
+        this.participantesService.delete(id);
+      }
+    });
   }
 }
