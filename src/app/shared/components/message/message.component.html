@@ -1,0 +1,17 @@
+<div class="message-container">
+  <div>
+    <p>{{ data.text }}</p>
+    <p *ngIf="data.subtext">
+      {{data.subtext}}
+    </p>
+  </div>
+  <div class="btn-container">
+    <div *ngIf="data.options === 'yn'">
+      <button class="btn btn-outline-success mx-3" (click)="onClose(true)">Sim</button>
+      <button class="btn btn-outline-danger mx-3" (click)="onClose(false)">Não</button>
+    </div>
+    <div *ngIf="data.options === 'ok'">
+      <button class="btn success-btn" (click)="onClose(true)">Ok</button>    
+    </div>
+  </div>
+</div>
