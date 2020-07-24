@@ -88,7 +88,6 @@ export class EditaParticipanteComponent implements OnInit {
       }
 
       if (this.route.snapshot.params.modo === 'cadastrar') {
-        console.log(info);
         this.participantesService.newParticipante(info);
       } else {
         info.id = this.participanteAtivo.id;
