@@ -1,17 +1,29 @@
-To run this project, you'll need NPM.
+# Test for Angular Developer at Generation.org
 
-Clone this project and open the folder
-- ~ git clone https://github.com/MBAlexandreMB/Instrutor-Angular-Generation.git
-- ~ cd Instrutor-Angular-Generation
+**To run this project, you'll need NPM!**
 
-Install all the dependencies
-- ~ npm i
+> Clone this project and open the folder
+```shell
+$ git clone https://github.com/MBAlexandreMB/Instrutor-Angular-Generation.git
+$ cd Instrutor-Angular-Generation
+```
 
-Run with npm
-- ~ npm start
-OR with angular-cli
-- ~ ng serve
+> Install all the dependencies
+```shell
+$ npm i
+```
 
-OR build it
--  ~ npm build
-- ~ ng build
+> Run with npm
+```shell
+$ npm start
+```
+> OR with angular-cli
+```shell
+$ ng serve
+```
+
+> OR build it
+```shell
+$ npm build
+$ ng build
+```
