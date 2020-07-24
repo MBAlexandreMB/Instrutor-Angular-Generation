@@ -19,6 +19,7 @@ import { MessageComponent } from './shared/components/message/message.component'
 import { ToastComponent } from './shared/components/toast/toast.component';
 import { NavbarComponent } from './components/navigation/navbar/navbar.component';
 import { FooterComponent } from './components/navigation/footer/footer.component';
+import { ListaTurmaComponent } from './components/turmas/lista-turma/lista-turma.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { FooterComponent } from './components/navigation/footer/footer.component
     ToastComponent,
     NavbarComponent,
     FooterComponent,
+    ListaTurmaComponent,
   ],
   imports: [
     BrowserModule,
