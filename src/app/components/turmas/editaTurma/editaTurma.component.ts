@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { TurmasService } from 'src/app/shared/services/turmas.service';
+import { ToastService } from 'src/app/shared/services/toast.service';
 
 @Component({
   selector: 'app-edita-turma',
@@ -8,25 +9,19 @@ import { TurmasService } from 'src/app/shared/services/turmas.service';
   styleUrls: ['./editaTurma.component.css']
 })
 export class EditaTurmaComponent implements OnInit {
-  @ViewChild("toast", { read: ElementRef, static: true }) toast: ElementRef;
-
   form: FormGroup;
-  errorMessage: String = null;
 
-  constructor(private turmasService: TurmasService) {
+  constructor(
+    private turmasService: TurmasService,
+    private toastService: ToastService,  
+  ) {
     this.form = new FormGroup({
-      'descricao': new FormControl('', [Validators.required, Validators.minLength(3)]),
-      'tipo': new FormControl('', [Validators.required, Validators.minLength(3)]),
+      'descricao': new FormControl('', [Validators.required, Validators.minLength(5)]),
+      'tipo': new FormControl('', [Validators.required, Validators.minLength(5)]),
     });
    }
 
   ngOnInit() {
-  }
-
-  checkIfValid() {
-    if (this.form.valid) {
-      this.errorMessage = null;
-    }
   }
 
   onSubmit() {
@@ -35,12 +30,12 @@ export class EditaTurmaComponent implements OnInit {
       this.turmasService.newTurma(this.form.value);
       this.form.reset();
     } else {
-      this.errorMessage = 'Verifique os erros do formulário antes de enviar!';
+      this.toastService.show(
+        'Erro',
+        "Verifique os campos com erro antes de enviar!",
+        'text-danger'
+      );
     }
-  }
-
-  closeToast() {
-    this.errorMessage = null;
   }
 
   get descricao(): FormControl {

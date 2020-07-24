@@ -8,7 +8,6 @@
     <div class="form-group w-100">
       <label for="descricao">Descrição</label>
       <input
-      (input)="checkIfValid()"
       type="email"
       class="form-control"
       id="descricao"
@@ -20,14 +19,13 @@
           Campo obrigatório
         </small>
         <small *ngIf="descricao.errors.minlength" class="text-danger ml-2 mt-2">
-          O campo deve ter ao menos 3 caracteres
+          O campo deve ter ao menos 5 caracteres
         </small>
       </div>
     </div>
     <div class="form-group w-100">
       <label for="tipo">Tipo</label>
       <input
-      (input)="checkIfValid()"
       type="text"
       class="form-control"
       id="tipo"
@@ -39,7 +37,7 @@
           Campo obrigatório
         </small>
         <small *ngIf="tipo.errors.minlength" class="text-danger ml-2 mt-2">
-          O campo deve ter ao menos 3 caracteres
+          O campo deve ter ao menos 5 caracteres
         </small>
       </div>
     </div>
@@ -51,15 +49,5 @@
     >
       Cadastrar
     </button>
-    <ngb-toast
-    *ngIf="errorMessage"
-    header="Erro"
-    (hide)="closeToast()"
-    [delay]="7000"
-    [autohide]="true"
-    class="text-danger"
-    >
-      {{ errorMessage }}
-    </ngb-toast>
   </form>
 </div>
