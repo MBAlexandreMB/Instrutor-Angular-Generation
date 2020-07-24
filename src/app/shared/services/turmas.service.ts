@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map, tap, catchError } from 'rxjs/operators';
 
 import { Turma } from '../models/turma.model';
 import { environment } from 'src/environments/environment';
+import { ToastService } from './toast.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ export class TurmasService {
   turmas: BehaviorSubject<Turma[]> = new BehaviorSubject([]);
   turmaAtiva: BehaviorSubject<Turma> = new BehaviorSubject(null);
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private toastService: ToastService) { }
 
   getAll(): Observable<Turma[]> {
     return this.http.get<Turma[]>(`${environment.api_uri}/turma`)
@@ -31,7 +32,23 @@ export class TurmasService {
 
   newTurma(turma: {descricao: String, tipo: String}): void {
     this.http.post<Turma>(`${environment.api_uri}/turma`, { ...turma, participantes: [] })
-      .subscribe(() => this.getAll().subscribe());
+    .pipe(catchError(erro => {
+      this.toastService.show(
+        'Erro',
+        `Erro ao cadastrar turma: ${erro}`,
+        'text-danger'
+      );
+      
+      throw erro;
+    }))
+      .subscribe(() => {
+        this.toastService.show(
+          'Sucesso',
+          "Turma cadastrada com sucesso!",
+          'text-success'
+        );
+        this.getAll().subscribe()
+      });
   }
 }
 

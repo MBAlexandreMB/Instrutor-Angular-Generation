@@ -1,0 +1,36 @@
+<footer class="footer text-white">
+  <div
+  class="py-4 d-flex align-items-center justify-content-center"
+  id="footer-social-container"
+  >
+    <div class="d-flex flex-column align-items-center">
+      <p id="social-text" class="m-0">Siga-nos nas redes sociais</p>
+      <div>
+        <img
+        class="social-logo mx-4 mt-3"
+        [src]="logoImages['facebook'][fbLogo.hovered]"
+        alt="Logo do facebook"
+        appCheckHovering
+        #fbLogo
+        >
+        <img
+        class="social-logo mx-4 mt-3"
+        [src]="logoImages['instagram'][iLogo.hovered]"
+        alt="Logo do Instagram"
+        appCheckHovering
+        #iLogo
+        >
+        <img
+        class="social-logo mx-4 mt-3"
+        [src]="logoImages['linkedin'][lLogo.hovered]"
+        alt="Logo do Linkedin"
+        appCheckHovering
+        #lLogo
+        >
+      </div>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center p-2" id="footer-copyright-container">
+    <p class="m-0">© 2020 Copyright brasil.generation.org</p>
+  </div>
+</footer>
